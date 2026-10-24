@@ -18,6 +18,12 @@ Export teams often reconcile commercial invoices, packing lists, supplier declar
 - Produces a report that distinguishes received, extracted, checked, and reviewed evidence.
 - Includes resettable **synthetic** suppliers, shipments, and documents for demos. Supplier messages in the prototype are simulated.
 
+### Prototype screenshot
+
+![Supplier evidence workspace showing synthetic sample requests, outstanding items, exceptions, and the local message simulator](docs/screenshots/supplier-evidence-prototype.png)
+
+*Local prototype UI with synthetic sample data. Supplier messages are simulated; this screenshot does not represent a live production workflow.*
+
 A consistent invoice and packing list means only **ready for review**. Spindle does not certify customs compliance, legal accuracy, HS classification, origin, or export readiness.
 
 ## Demo
