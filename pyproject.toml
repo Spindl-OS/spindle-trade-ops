@@ -1,0 +1,47 @@
+[project]
+name = "spindle-trade-export"
+version = "0.1.0"
+description = "Spindle Trade & Export module: supplier-document workflows (origin declarations, a minimal CBAM definition) on the Spindle evidence-workflow backbone."
+readme = "README.md"
+requires-python = ">=3.12"
+license = { text = "UNLICENSED" }
+dependencies = ["spindle-agents"]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0", "pytest-asyncio>=0.24", "ruff>=0.6", "mypy>=1.11"]
+
+# Runtime discovery is declared by spindle-agents, which ships the production module.
+
+[tool.uv.sources]
+# Local development: the engine checkout next to this repo.
+spindle-agents = { path = "../spindle-agents-bootstrap", editable = true }
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/spindle_trade_export"]
+
+[tool.ruff]
+src = ["src", "tests"]
+line-length = 100
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "ASYNC", "S", "RUF"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**" = ["S101"]
+
+[tool.mypy]
+python_version = "3.12"
+strict = true
+plugins = ["pydantic.mypy"]
+
+[[tool.mypy.overrides]]
+module = ["composio", "composio.*", "e2b_code_interpreter.*", "langfuse.*", "arq.*", "falkordb", "falkordb.*"]
+ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
